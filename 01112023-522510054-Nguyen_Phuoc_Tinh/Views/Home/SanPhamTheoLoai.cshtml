@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewData["Title"] = "SanPhamTheoLoai";
+    Layout = "~/Views/Shared/_LayoutOganic.cshtml";
+}
+@using X.PagedList.Mvc.Core;
+@model X.PagedList.IPagedList<TDanhMucSp>;
+
+<section class="categories">
+    <section class="featured spad">
+        <div class="container">
+            <div class="row"></div>
+            <div class="row featured__filter">
+                    @foreach(var item in Model)
+                    {
+                        <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
+                            <div class="featured__item">
+                                <div class="featured__item__pic set-bg" style="background-image: url(@Url.Content("../ImagesVali/" + item.AnhDaiDien))">
+                                    <ul class="featured__item__pic__hover">
+                                        <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-shoppping-cart"></i></a></li>
+                                    </ul>    
+                                </div>
+                                <div class="featured__item__text">
+                                    <h6><a href="#">@item.TenSp</a></h6>
+                                    <h5>@item.GiaNhoNhat</h5>
+                                </div>
+                            </div>
+                        </div>
+                    }
+            </div>
+        </div>
+    </section>
+</section>
+<div class="product__pagination w-100 d-flex justify-content-center">
+    @Html.PagedListPager(Model, page=>Url.Action("SanPhamTheoLoai", new{page, maloai=ViewBag.maloai}))
+</div>
+
+<style>
+    .product__pagination .active {
+        padding: 2px 7px !important;
+        border: 1px solid blue;
+        color: red !important;
+    }
+</style>
